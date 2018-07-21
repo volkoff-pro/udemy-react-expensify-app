@@ -5,12 +5,12 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch Firefox Debug",
-      "type": "firefox",
-      "request": "launch",
-      "reAttach": true,
-      "url": "http://localhost:5500/public/index.html",
-      "webRoot": "${workspaceFolder}/public/"
+      "type": "chrome",
+      "request": "attach",
+      "port": 9222,
+      "name": "Attach",
+      "url": "http://127.0.0.1:5500/public",
+      "webRoot": "${workspaceFolder}/src"
     }
   ]
 }
