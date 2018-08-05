@@ -20,7 +20,7 @@ class AddOption extends React.Component {
     }));
 
     if (!error) {
-      event.target.elements.value = '';
+      event.target.elements.option.value = '';
     }
   };
 
