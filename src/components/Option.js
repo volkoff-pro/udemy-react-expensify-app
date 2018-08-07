@@ -5,12 +5,13 @@ const Option = ({ option, handleDeleteOption }) => (
   <div>
     {option}
     <button
+      className="button button--link"
       type="button"
       onClick={() => {
         handleDeleteOption(option);
       }}
     >
-      remove
+      Remove
     </button>
   </div>
 );
