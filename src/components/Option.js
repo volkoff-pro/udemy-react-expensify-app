@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Option = ({ option, handleDeleteOption }) => (
-  <div>
-    {option}
+const Option = ({ option, handleDeleteOption, count }) => (
+  <div className="option">
+    <p className="option__text">
+      {count}. {option}
+    </p>
     <button
       className="button button--link"
       type="button"

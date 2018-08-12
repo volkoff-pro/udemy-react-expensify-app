@@ -18,11 +18,12 @@ const Options = ({ handleDeleteOptions, handleDeleteOption, options }) => (
     {options.length === 0 && (
       <p className="widget__message">Please add an option to get started!</p>
     )}
-    {options.map(option => (
+    {options.map((option, index) => (
       <Option
         handleDeleteOption={handleDeleteOption}
         key={option}
         option={option}
+        count={index + 1}
       />
     ))}
   </div>
