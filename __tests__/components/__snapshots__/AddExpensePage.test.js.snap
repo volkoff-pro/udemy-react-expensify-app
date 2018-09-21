@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddExpensePage component should mount correctly 1`] = `
+<AddExpensePage>
+  <div>
+    This is from my add expense component
+  </div>
+</AddExpensePage>
+`;
+
+exports[`AddExpensePage component should render correctly 1`] = `
+<div>
+  This is from my add expense component
+</div>
+`;
+
+exports[`AddExpensePage component should shallow correctly 1`] = `
+<div>
+  This is from my add expense component
+</div>
+`;

@@ -16,3 +16,14 @@ const {
 } = person;
 
 console.log(`It's ${city} in ${temperature}`);
+
+const address = [
+  '1299 S Juniper Street',
+  'Philadelphia',
+  'Pennsilvania',
+  '19147'
+];
+
+const [, town, state] = address;
+
+console.log(`You are in ${town} ${state}`);

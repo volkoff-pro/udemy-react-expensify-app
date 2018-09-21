@@ -5,10 +5,29 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './src/playground/destructuring.js',
+  entry: path.resolve(__dirname, 'src/playground/redux-expensify.js'),
   output: {
-    path: path.join(__dirname, 'public'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, 'public'),
+    filename: '[name].[hash:8].js'
+  },
+  optimization: {
+    runtimeChunk: 'single',
+    splitChunks: {
+      chunks: 'all',
+      maxInitialRequests: Infinity,
+      minSize: 0,
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name(module) {
+            const packageName = module.context.match(
+              /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+            )[1];
+            return `npm.${packageName.replace('@', '')}`;
+          }
+        }
+      }
+    }
   },
   module: {
     rules: [
@@ -30,14 +49,14 @@ module.exports = {
       title: 'Expensify App',
       template: 'src/index.html'
     }),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.HashedModuleIdsPlugin()
   ],
   devServer: {
     contentBase: path.join(__dirname, 'public'),
     historyApiFallback: true,
     overlay: true,
     open: true,
-    progress: true,
     hot: true
   }
 };
