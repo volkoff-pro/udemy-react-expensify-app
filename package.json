@@ -6,12 +6,14 @@
   "scripts": {
     "webpack": "webpack",
     "build": "webpack",
-    "dev": "webpack-dev-server",
+    "start": "webpack-dev-server",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "stylelint": "stylelint /src/**/*.scss",
+    "stylelint:fix": "stylelint src/**/*.scss --fix"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json,css,md}": [
@@ -32,6 +34,7 @@
     "react-modal": "^3.5.1",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
+    "recompose": "^0.30.0",
     "redux": "^3.7.2",
     "uuid": "^3.3.2",
     "validator": "^10.7.1",
@@ -67,6 +70,7 @@
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^2.10.0",
+    "eslint-loader": "^2.1.1",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-prettier": "^2.6.2",
@@ -82,6 +86,10 @@
     "redux-mock-store": "^1.5.3",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.21.0",
+    "stylelint": "^9.6.0",
+    "stylelint-config-recommended": "^2.1.0",
+    "stylelint-config-recommended-scss": "^3.2.0",
+    "stylelint-scss": "^3.3.1",
     "webpack": "^4.19.1",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.8"

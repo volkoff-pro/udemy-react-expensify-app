@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: path.resolve(__dirname, 'src/playground/redux-expensify.js'),
+  entry: path.resolve(__dirname, 'src/app.js'),
   output: {
     path: path.resolve(__dirname, 'public'),
     filename: '[name].[hash:8].js'
@@ -31,6 +31,17 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        enforce: 'pre',
+        loader: require.resolve('eslint-loader'),
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        options: {
+          cache: true,
+          eslintPath: require.resolve('eslint')
+        },
+        include: path.resolve('src')
+      },
       {
         loader: 'babel-loader',
         test: /\.js$/,
