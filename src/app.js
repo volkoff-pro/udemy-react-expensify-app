@@ -5,7 +5,7 @@ import AppRouter from './routes/routes';
 import configureStore from './store/configure.store';
 import { addExpense } from './actions/expenses.actions';
 import { setTextFilter } from './actions/filters.actions';
-import getVisibleExpenses from './selectors/expenses.selectors';
+// import getVisibleExpenses from './selectors/expenses.selectors';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 
@@ -29,9 +29,9 @@ store.dispatch(
 
 store.dispatch(setTextFilter('bill'));
 
-const state = store.getState();
-const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
-console.log(visibleExpenses);
+// const state = store.getState();
+// const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
+// console.log(visibleExpenses);
 
 const jsx = (
   <Provider store={store}>

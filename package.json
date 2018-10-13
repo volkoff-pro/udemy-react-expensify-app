@@ -16,8 +16,12 @@
     "stylelint:fix": "stylelint src/**/*.scss --fix"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,json,css,md}": [
+    "src/**/*.{js,jsx}": [
       "eslint --fix src",
+      "git add"
+    ],
+    "src/**/*.{scss,sass}": [
+      "stylelint --fix",
       "git add"
     ]
   },
