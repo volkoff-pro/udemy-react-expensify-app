@@ -9,8 +9,8 @@
     "start": "webpack-dev-server",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "test": "jest --updateSnapshot",
+    "test:watch": "jest --updateSnapshot --watch",
     "test:coverage": "jest --coverage",
     "stylelint": "stylelint /src/**/*.scss",
     "stylelint:fix": "stylelint src/**/*.scss --fix"
