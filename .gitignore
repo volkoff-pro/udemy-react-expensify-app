@@ -3,4 +3,4 @@ node_modules/
 .idea/
 public/
 coverage/
-__snapshots__/
+**/__snapshots__
