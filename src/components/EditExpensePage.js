@@ -1,13 +1,43 @@
 import React from 'react';
-import { object } from 'prop-types';
+import { connect } from 'react-redux';
+import { object, func, shape } from 'prop-types';
+import ExpenseForm from './ExpenseForm';
+import { editExpense, removeExpense } from '../actions/expenses.actions';
 
-const EditExpensePage = ({ match }) => (
-  <div>Editing expense with id of {match.params.id}</div>
+const EditExpensePage = ({ expense, dispatch, history }) => (
+  <div>
+    <ExpenseForm
+      expense={expense}
+      onSubmit={exp => {
+        dispatch(editExpense(expense.id, exp));
+        history.push('/');
+      }}
+    />
+    <button
+      type="button"
+      onClick={() => {
+        dispatch(removeExpense({ id: expense.id }));
+        history.push('/');
+      }}
+    >
+      Remove
+    </button>
+  </div>
 );
+
+EditExpensePage.defaultProps = {
+  history: undefined
+};
 
 EditExpensePage.propTypes = {
   // eslint-disable-next-line
-  match: object
+  expense: object,
+  history: shape(object.isRequired),
+  dispatch: func.isRequired
 };
 
-export default EditExpensePage;
+const mapStateToProps = (state, props) => ({
+  expense: state.expenses.find(expense => expense.id === props.match.params.id)
+});
+
+export default connect(mapStateToProps)(EditExpensePage);

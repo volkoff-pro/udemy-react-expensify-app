@@ -1,11 +1,28 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { func, object, shape } from 'prop-types';
 import ExpenseForm from './ExpenseForm';
+import { addExpense } from '../actions/expenses.actions';
 
-const AddExpensePage = () => (
+const AddExpensePage = ({ dispatch, history }) => (
   <div>
     <h1>Add Expense</h1>
-    <ExpenseForm />
+    <ExpenseForm
+      onSubmit={expense => {
+        dispatch(addExpense(expense));
+        history.push('/');
+      }}
+    />
   </div>
 );
 
-export default AddExpensePage;
+AddExpensePage.defaultProps = {
+  history: undefined
+};
+
+AddExpensePage.propTypes = {
+  dispatch: func.isRequired,
+  history: shape(object.isRequired)
+};
+
+export default connect()(AddExpensePage);
