@@ -9,8 +9,8 @@
     "start": "webpack-dev-server",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
-    "test": "jest --updateSnapshot",
-    "test:watch": "jest --updateSnapshot --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "stylelint": "stylelint /src/**/*.scss",
     "stylelint:fix": "stylelint src/**/*.scss --fix"
@@ -29,8 +29,6 @@
   "license": "MIT",
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
-    "enzyme": "^3.6.0",
-    "enzyme-adapter-react-16": "^1.5.0",
     "moment": "^2.18.1",
     "normalize.css": "^8.0.0",
     "prop-types": "^15.6.2",
@@ -73,6 +71,8 @@
     "babel-loader": "^8.0.0",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^1.0.0",
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.5.0",
     "enzyme-to-json": "^3.3.4",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^17.1.0",
