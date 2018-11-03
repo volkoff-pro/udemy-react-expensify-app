@@ -3,7 +3,8 @@ module.exports = {
   snapshotSerializers: ['enzyme-to-json/serializer'],
   testPathIgnorePatterns: [
     '<rootDir>/__tests__/setup/',
-    '<rootDir>/node_modules/'
+    '<rootDir>/node_modules/',
+    '/fixtures/'
   ],
   moduleNameMapper: {
     '^.+\\.(css|scss|sass)$': 'identity-obj-proxy'
