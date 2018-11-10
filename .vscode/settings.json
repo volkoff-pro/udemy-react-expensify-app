@@ -2,5 +2,7 @@
   "prettier.singleQuote": true,
   "prettier.eslintIntegration": true,
   "editor.snippetSuggestions": "inline",
-  "editor.suggestSelection": "recentlyUsedByPrefix"
+  "editor.suggestSelection": "recentlyUsedByPrefix",
+  "terminal.integrated.cursorStyle": "underline",
+  "terminal.integrated.cursorBlinking": true
 }

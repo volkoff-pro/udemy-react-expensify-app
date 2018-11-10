@@ -4,7 +4,8 @@ module.exports = {
   testPathIgnorePatterns: [
     '<rootDir>/__tests__/setup/',
     '<rootDir>/node_modules/',
-    '/fixtures/'
+    '/fixtures/',
+    '/__mocks__/'
   ],
   moduleNameMapper: {
     '^.+\\.(css|scss|sass)$': 'identity-obj-proxy'

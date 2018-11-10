@@ -1,22 +1,22 @@
 import React from 'react';
-import { func, string, shape, object } from 'prop-types';
+import { func, string, shape, number } from 'prop-types';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
-import 'react-dates/lib/css/_datepicker.css';
 
 export default class ExpenseForm extends React.Component {
   static propTypes = {
-    onSubmit: func.isRequired,
+    onSubmit: func,
     expense: shape({
       description: string,
       note: string,
-      amount: string,
-      createdAt: object
+      amount: number,
+      createdAt: number
     })
   };
 
   static defaultProps = {
-    expense: undefined
+    expense: undefined,
+    onSubmit: undefined
   };
 
   constructor(props) {
