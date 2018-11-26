@@ -3,4 +3,3 @@ node_modules/
 public/
 .babelrc
 coverage/
-__tests__/
