@@ -4,12 +4,12 @@ import { func, object, shape } from 'prop-types';
 import ExpenseForm from './ExpenseForm';
 import { addExpense } from '../actions/expenses.actions';
 
-const AddExpensePage = ({ dispatch, history }) => (
+export const AddExpensePage = ({ onSubmit, history }) => (
   <div>
     <h1>Add Expense</h1>
     <ExpenseForm
       onSubmit={expense => {
-        dispatch(addExpense(expense));
+        onSubmit(expense);
         history.push('/');
       }}
     />
@@ -21,8 +21,15 @@ AddExpensePage.defaultProps = {
 };
 
 AddExpensePage.propTypes = {
-  dispatch: func.isRequired,
+  onSubmit: func.isRequired,
   history: shape(object.isRequired)
 };
 
-export default connect()(AddExpensePage);
+const mapDispatchToProps = dispatch => ({
+  onSubmit: expense => dispatch(addExpense(expense))
+});
+
+export default connect(
+  undefined,
+  mapDispatchToProps
+)(AddExpensePage);

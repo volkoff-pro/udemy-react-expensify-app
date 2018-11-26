@@ -2,8 +2,6 @@
   "javascript.format.enable": false,
   "prettier.singleQuote": true,
   "prettier.eslintIntegration": true,
-  "terminal.integrated.cursorStyle": "underline",
-  "terminal.integrated.cursorBlinking": true,
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true
 }
