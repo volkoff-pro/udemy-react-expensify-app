@@ -4,19 +4,19 @@ import { object, func, shape } from 'prop-types';
 import ExpenseForm from './ExpenseForm';
 import { editExpense, removeExpense } from '../actions/expenses.actions';
 
-const EditExpensePage = ({ expense, dispatch, history }) => (
+export const EditExpensePage = ({ expense, editExp, removeExp, history }) => (
   <div>
     <ExpenseForm
       expense={expense}
       onSubmit={exp => {
-        dispatch(editExpense(expense.id, exp));
+        editExp(expense.id, exp);
         history.push('/');
       }}
     />
     <button
       type="button"
       onClick={() => {
-        dispatch(removeExpense({ id: expense.id }));
+        removeExp({ id: expense.id });
         history.push('/');
       }}
     >
@@ -33,11 +33,20 @@ EditExpensePage.propTypes = {
   // eslint-disable-next-line
   expense: object,
   history: shape(object.isRequired),
-  dispatch: func.isRequired
+  editExp: func.isRequired,
+  removeExp: func.isRequired
 };
 
 const mapStateToProps = (state, props) => ({
   expense: state.expenses.find(expense => expense.id === props.match.params.id)
 });
 
-export default connect(mapStateToProps)(EditExpensePage);
+const mapDispatchToProps = dispatch => ({
+  editExp: (id, expense) => dispatch(editExpense(id, expense)),
+  removeExp: data => dispatch(removeExpense(data))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EditExpensePage);

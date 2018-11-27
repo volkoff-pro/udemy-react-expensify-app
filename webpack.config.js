@@ -38,9 +38,12 @@ module.exports = {
         exclude: /node_modules/,
         options: {
           cache: true,
-          eslintPath: require.resolve('eslint')
+          fix: true,
+          eslintPath: require.resolve('eslint'),
+          failOnError: true,
+          failOnWarning: true
         },
-        include: path.resolve('src')
+        include: path.resolve(__dirname, 'src')
       },
       {
         loader: 'babel-loader',

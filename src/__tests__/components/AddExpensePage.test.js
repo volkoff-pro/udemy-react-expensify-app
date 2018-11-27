@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import { AddExpensePage } from '../../components/AddExpensePage';
 import expenses from '../fixtures/expenses';
 
+// eslint-disable-next-line one-var
 let onSubmit, history, wrapper;
 
 beforeEach(() => {

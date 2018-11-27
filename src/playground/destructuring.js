@@ -9,12 +9,14 @@ const person = {
 
 const { name: firstName = 'Anon', age } = person;
 
+// eslint-disable-next-line no-console
 console.log(`${firstName} is ${age}`);
 
 const {
   location: { city, temp: temperature }
 } = person;
 
+// eslint-disable-next-line no-console
 console.log(`It's ${city} in ${temperature}`);
 
 const address = [
@@ -26,4 +28,5 @@ const address = [
 
 const [, town, state] = address;
 
+// eslint-disable-next-line no-console
 console.log(`You are in ${town} ${state}`);
