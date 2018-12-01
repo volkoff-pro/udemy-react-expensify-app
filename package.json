@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "description": "Indecision App",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/volkoff-pro/udemy-react-expensify-app"
+  },
   "scripts": {
-    "webpack": "webpack",
-    "build": "webpack",
-    "start": "webpack-dev-server",
+    "build": "webpack --config webpack.prod.js",
+    "build:dev": "webpack --config webpack.dev.js",
+    "start": "webpack-dev-server --config webpack.dev.js",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "test": "jest",
@@ -87,6 +91,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.6.0",
     "lint-staged": "^7.3.0",
+    "mini-css-extract-plugin": "^0.4.5",
     "node-sass": "^4.9.3",
     "prettier": "^1.14.3",
     "prettier-eslint": "^8.8.2",
@@ -100,7 +105,8 @@
     "stylelint-scss": "^3.3.1",
     "webpack": "^4.19.1",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.8"
+    "webpack-dev-server": "^3.1.8",
+    "webpack-merge": "^4.1.4"
   },
   "husky": {
     "hooks": {
