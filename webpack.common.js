@@ -5,8 +5,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: path.resolve(__dirname, 'src/app.js'),
   output: {
-    path: path.resolve(__dirname, 'public'),
-    filename: '[name].[hash:8].js'
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'static/js/[name].[hash:8].js'
   },
   module: {
     rules: [
@@ -34,8 +34,10 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Expensify App',
-      template: 'src/index.html'
+      template: 'public/index.html'
     }),
-    new webpack.HashedModuleIdsPlugin()
+    new webpack.HashedModuleIdsPlugin(),
+    new webpack.NamedModulesPlugin(),
+    new webpack.ProgressPlugin()
   ]
 };

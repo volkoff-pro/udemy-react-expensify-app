@@ -16,7 +16,7 @@ module.exports = merge(common, {
     ]
   },
   devServer: {
-    contentBase: path.join(__dirname, 'public'),
+    contentBase: path.join(__dirname, 'dist'),
     historyApiFallback: true,
     overlay: true,
     open: true,
