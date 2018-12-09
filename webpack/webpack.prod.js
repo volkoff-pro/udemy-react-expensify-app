@@ -13,10 +13,19 @@ const cleanOptions = {
   allowExternal: true
 };
 
+const publicPath = paths.servedPath;
+const publicUrl = publicPath.slice(0, -1);
+
 module.exports = merge(common, {
   mode: 'production',
   bail: true,
   devtool: 'source-map',
+  output: {
+    path: paths.appDist,
+    filename: 'static/js/[name].[hash:8].js',
+    chunkFilename: 'static/js/[name].[hash:8].js',
+    publicPath
+  },
   // optimization: {
   //   minimizer: [
   //     new UglifyJsPlugin({

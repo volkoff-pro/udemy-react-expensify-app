@@ -4,10 +4,6 @@ const paths = require('./paths');
 
 module.exports = {
   entry: [paths.appIndexJs],
-  output: {
-    path: paths.appDist,
-    filename: 'static/js/[name].[hash:8].js'
-  },
   module: {
     rules: [
       {

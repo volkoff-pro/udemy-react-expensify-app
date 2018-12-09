@@ -5,9 +5,17 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const common = require('./webpack.common');
 const paths = require('./paths');
 
+const publicPath = '/';
+
 module.exports = merge(common, {
   mode: 'development',
   devtool: 'cheap-eval-source-map',
+  output: {
+    pathinfo: true,
+    publicPath,
+    filename: 'static/js/bundle.js',
+    chunkFilename: 'static/js/[name].chunk.js'
+  },
   module: {
     rules: [
       {
@@ -17,11 +25,14 @@ module.exports = merge(common, {
     ]
   },
   devServer: {
-    contentBase: paths.appDist,
+    contentBase: paths.appPublic,
+    watchContentBase: true,
     historyApiFallback: true,
+    publicPath,
     overlay: true,
     open: true,
-    hot: true
+    hot: true,
+    compress: true
   },
   plugins: [
     new MiniCssExtractPlugin({
