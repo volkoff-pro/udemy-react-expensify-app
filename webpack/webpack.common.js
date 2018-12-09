@@ -1,11 +1,11 @@
-const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const paths = require('./paths');
 
 module.exports = {
-  entry: path.resolve(__dirname, 'src/app.js'),
+  entry: [paths.appIndexJs],
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: paths.appDist,
     filename: 'static/js/[name].[hash:8].js'
   },
   module: {
@@ -22,7 +22,7 @@ module.exports = {
           failOnError: true,
           failOnWarning: true
         },
-        include: path.resolve(__dirname, 'src')
+        include: paths.appSrc
       },
       {
         loader: 'babel-loader',
@@ -34,7 +34,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Expensify App',
-      template: 'public/index.html'
+      template: paths.appHtml
     }),
     new webpack.HashedModuleIdsPlugin(),
     new webpack.NamedModulesPlugin(),

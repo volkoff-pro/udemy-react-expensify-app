@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const common = require('./webpack.common');
+const paths = require('./paths');
 
 module.exports = merge(common, {
   mode: 'development',
@@ -16,7 +17,7 @@ module.exports = merge(common, {
     ]
   },
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    contentBase: paths.appDist,
     historyApiFallback: true,
     overlay: true,
     open: true,

@@ -4,9 +4,18 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const common = require('./webpack.common');
+const paths = require('./paths');
+
+const pathsToClean = ['dist'];
+const cleanOptions = {
+  root: paths.appPath,
+  verbose: true,
+  allowExternal: true
+};
 
 module.exports = merge(common, {
   mode: 'production',
+  bail: true,
   devtool: 'source-map',
   // optimization: {
   //   minimizer: [
@@ -50,7 +59,7 @@ module.exports = merge(common, {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(pathsToClean, cleanOptions),
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].[hash:8].css',
       chunkFilename: 'static/css/[id].[hash:8].css'
