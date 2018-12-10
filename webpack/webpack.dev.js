@@ -9,7 +9,7 @@ const publicPath = '/';
 
 module.exports = merge(common, {
   mode: 'development',
-  devtool: 'cheap-eval-source-map',
+  devtool: 'inline-source-map',
   output: {
     pathinfo: true,
     publicPath,
@@ -20,7 +20,26 @@ module.exports = merge(common, {
     rules: [
       {
         test: /\.s?css$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true
+            }
+          }
+        ]
       }
     ]
   },
@@ -36,8 +55,7 @@ module.exports = merge(common, {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[id].css'
+      filename: '[name].css'
     }),
     new webpack.HotModuleReplacementPlugin()
   ]

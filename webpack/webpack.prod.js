@@ -1,7 +1,6 @@
 const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-// const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const common = require('./webpack.common');
 const paths = require('./paths');
@@ -14,7 +13,7 @@ const cleanOptions = {
 };
 
 const publicPath = paths.servedPath;
-const publicUrl = publicPath.slice(0, -1);
+// const publicUrl = publicPath.slice(0, -1);
 
 module.exports = merge(common, {
   mode: 'production',
@@ -27,64 +26,64 @@ module.exports = merge(common, {
     publicPath
   },
   optimization: {
+    runtimeChunk: true,
     minimizer: [
       new TerserPlugin({
         cache: true,
         parallel: true,
         sourceMap: true,
         terserOptions: {
-          compress: true,
-          mangle: true
+          parse: {
+            ecma: 8
+          },
+          compress: {
+            ecma: 5,
+            warnings: true,
+            inline: 2
+          },
+          mangle: {
+            safari10: true
+          },
+          output: {
+            ecma: 5,
+            comments: false,
+            ascii_only: true
+          }
         }
       })
     ]
   },
-  // optimization: {
-  //   minimizer: [
-  //     new UglifyJsPlugin({
-  //       cache: true,
-  //       parallel: true,
-  //       sourceMap: true
-  //     }),
-  //     new OptimizeCSSAssetsPlugin({})
-  //   ],
-  //   runtimeChunk: 'single',
-  //   splitChunks: {
-  //     chunks: 'all',
-  //     maxInitialRequests: Infinity,
-  //     minSize: 0,
-  //     cacheGroups: {
-  //       vendor: {
-  //         test: /[\\/]node_modules[\\/]/,
-  //         name(module) {
-  //           const packageName = module.context.match(
-  //             /[\\/]node_modules[\\/](.*?)([\\/]|$)/
-  //           )[1];
-  //           return `npm.${packageName.replace('@', '')}`;
-  //         }
-  //       },
-  //       styles: {
-  //         name: 'styles',
-  //         test: /\.s?css$/,
-  //         chunks: 'all',
-  //         enforce: true
-  //       }
-  //     }
-  //   }
-  // },
   module: {
     rules: [
       {
         test: /\.s?css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true
+            }
+          }
+        ]
       }
     ]
   },
   plugins: [
     new CleanWebpackPlugin(pathsToClean, cleanOptions),
     new MiniCssExtractPlugin({
-      filename: 'static/css/[name].[hash:8].css',
-      chunkFilename: 'static/css/[id].[hash:8].css'
+      filename: 'static/css/[name].[hash:8].css'
     })
   ]
 });
