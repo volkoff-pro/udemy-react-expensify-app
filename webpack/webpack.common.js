@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const paths = require('./paths');
 
 module.exports = {
-  entry: [paths.appIndexJs],
+  entry: ['@babel/polyfill', paths.appIndexJs],
   module: {
     rules: [
       {

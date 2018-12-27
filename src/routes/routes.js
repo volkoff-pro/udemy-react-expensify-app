@@ -9,7 +9,7 @@ import Header from '../components/Header';
 
 const routes = () => (
   <BrowserRouter>
-    <div>
+    <div className="main">
       <Header />
       <Switch>
         <Route path="/" exact component={ExpenseDashboardPage} />
