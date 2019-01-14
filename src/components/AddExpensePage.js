@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { func, object, shape } from 'prop-types';
 import ExpenseForm from './ExpenseForm';
-import { addExpense } from '../actions/expenses.actions';
+import { startAddExpense } from '../actions/expenses.actions';
 
 export const AddExpensePage = ({ onSubmit, history }) => (
   <div>
@@ -26,7 +26,7 @@ AddExpensePage.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: expense => dispatch(addExpense(expense))
+  onSubmit: expense => dispatch(startAddExpense(expense))
 });
 
 export default connect(
