@@ -1,4 +1,3 @@
-// import uuid from 'uuid';
 import database from '../firebase/firebase';
 
 export const addExpense = expense => ({
@@ -6,7 +5,7 @@ export const addExpense = expense => ({
   expense
 });
 
-export const startAddExpense = (expenseData = {}) => dispatch => {
+export const startAddExpense = (expenseData = {}) => async dispatch => {
   const {
     description = '',
     note = '',
@@ -16,17 +15,13 @@ export const startAddExpense = (expenseData = {}) => dispatch => {
 
   const expense = { description, note, amount, createdAt };
 
-  return database
-    .ref('expenses')
-    .push(expense)
-    .then(ref => {
-      dispatch(
-        addExpense({
-          id: ref.key,
-          ...expense
-        })
-      );
-    });
+  const ref = await database.ref('expenses').push(expense);
+  dispatch(
+    addExpense({
+      id: ref.key,
+      ...expense
+    })
+  );
 };
 
 export const removeExpense = ({ id } = {}) => ({
@@ -39,3 +34,25 @@ export const editExpense = (id, updates) => ({
   id,
   updates
 });
+
+export const setExpenses = expenses => ({
+  type: 'SET_EXPENSES',
+  expenses
+});
+
+export const startSetExpenses = () => dispatch =>
+  database
+    .ref('expenses')
+    .once('value')
+    .then(snapshot => {
+      const expenses = [];
+
+      snapshot.forEach(child => {
+        expenses.push({
+          id: child.key,
+          ...child.val()
+        });
+      });
+
+      dispatch(setExpenses(expenses));
+    });
